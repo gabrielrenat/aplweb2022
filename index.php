@@ -18,6 +18,12 @@ class Aplicacao
   public static function run()
   {
     $layout = new Template('view/layout.html');
+    $class = "Inicio";
+    if (class_exists($class)) {
+      $pagina = new $class();
+      $conteudo = $pagina->controller();
+      $layout->set('conteudo', $conteudo);
+    }
     echo $layout->saida();
   }
 }
