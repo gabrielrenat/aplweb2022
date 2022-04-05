@@ -12,4 +12,13 @@ function classLoader($class)
   }
 }
 spl_autoload_register("classLoader");
-$teste = new Teste();
+// Front Controller
+class Aplicacao
+{
+  public static function run()
+  {
+    $layout = new Template('view/layout.html');
+    echo $layout->saida();
+  }
+}
+Aplicacao::run();
