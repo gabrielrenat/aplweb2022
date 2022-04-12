@@ -4,9 +4,9 @@ class Route
   private $uri = [];
   public function __construct($app)
   {
-    $uriGet = $_SERVER["REQUEST_URI"];
+    $uri = $_SERVER["REQUEST_URI"];
     foreach ($app as $value) {
-      $uri = str_replace($value, "", $uriGet);
+      $uri = str_replace($value, "", $uri);
     }
     $this->uri = explode("/", $uri);
   }
