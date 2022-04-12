@@ -15,14 +15,24 @@ spl_autoload_register("classLoader");
 // Front Controller
 class Aplicacao
 {
+  static private $app = ["/", "/index.php"];
   public static function run()
   {
     $layout = new Template('view/layout.html');
-    $class = "Inicio";
+    $route = new Route(self::$app);
+    $class = $route->getClassName();
+    $method = $route->getMethodName();
+    if (empty($class)) {
+      $class = "Inicio";
+    }
     if (class_exists($class)) {
       $pagina = new $class();
-      $conteudo = $pagina->controller();
-      $layout->set('conteudo', $conteudo);
+      if (method_exists($pagina, $method)) {
+        $pagina->$method();
+      } else {
+        $pagina->controller();
+      }
+      $layout->set('conteudo', $pagina->getMessage());
     }
     echo $layout->saida();
   }
