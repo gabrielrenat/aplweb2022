@@ -1,8 +1,13 @@
 <?php
 class Tabela
 {
+  private $message = "";
   public function controller()
   {
-    echo "Estou na classe Tabela";
+    $this->message = "Estou na classe Tabela";
+  }
+  public function getMessage()
+  {
+    return $this->message;
   }
 }
