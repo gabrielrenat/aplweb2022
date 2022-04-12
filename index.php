@@ -22,8 +22,12 @@ class Aplicacao
     $route = new Route(self::$app);
     $class = $route->getClassName();
     $method = $route->getMethodName();
-    $class = $_GET["class"];
-    $method = $_GET["method"];
+    if (isset($_GET["class"])) {
+      $class = $_GET["class"];
+    }
+    if (isset($_GET["method"])) {
+      $method = $_GET["method"];
+    }
     if (empty($class)) {
       $class = "Inicio";
     }
