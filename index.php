@@ -19,6 +19,7 @@ class Aplicacao
   public static function run()
   {
     $layout = new Template('view/layout.html');
+    $method = "";
     if (isset($_GET["class"])) {
       $class = $_GET["class"];
     }
@@ -27,7 +28,6 @@ class Aplicacao
     }
     if (empty($class)) {
       $class = "Inicio";
-      $method = "";
     }
     if (class_exists($class)) {
       $pagina = new $class();
