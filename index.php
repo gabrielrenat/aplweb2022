@@ -27,6 +27,7 @@ class Aplicacao
     }
     if (empty($class)) {
       $class = "Inicio";
+      $method = "";
     }
     if (class_exists($class)) {
       $pagina = new $class();
