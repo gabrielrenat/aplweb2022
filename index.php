@@ -15,13 +15,10 @@ spl_autoload_register("classLoader");
 // Front Controller
 class Aplicacao
 {
-  static private $app = ["/lazaro2", "/lazaro2/index.php"];
+  static private $app = "/lazaro2";
   public static function run()
   {
     $layout = new Template('view/layout.html');
-    $route = new Route(self::$app);
-    $class = $route->getClassName();
-    $method = $route->getMethodName();
     if (isset($_GET["class"])) {
       $class = $_GET["class"];
     }
@@ -38,7 +35,7 @@ class Aplicacao
       } else {
         $pagina->controller();
       }
-      $layout->set('uri', self::$app[0]);
+      $layout->set('uri', self::$app);
       $layout->set('conteudo', $pagina->getMessage());
     }
     echo $layout->saida();
