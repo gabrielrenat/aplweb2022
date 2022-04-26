@@ -17,6 +17,17 @@ class Tabela
       $this->message = $tabela->saida();
     }
   }
+  public function remover()
+  {
+    try {
+      $conexao = Transaction::get();
+      $id = $conexao->quote($_GET["id"]);
+      $computador = new Crud("computador");
+      $resultado = $computador->delete("id = $id");
+    } catch (Exception $e) {
+      echo $e->getMessage();
+    }
+  }
   public function getMessage()
   {
     return $this->message;
