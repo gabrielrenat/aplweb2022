@@ -12,8 +12,10 @@ class Tabela
     $computador = new Crud("computador");
     $resultado = $computador->select();
     $tabela = new Template("view/tabela.html");
-    $tabela->set("linha", $resultado);
-    $this->message = $tabela->saida();
+    if (is_array($resultado)) {
+      $tabela->set("linha", $resultado);
+      $this->message = $tabela->saida();
+    }
   }
   public function getMessage()
   {
