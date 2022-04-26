@@ -18,7 +18,13 @@
         <button type="button">Editar</button>
       </td>
       <td>
-        <button type="button">Remover</button>
+        <button
+          type="button"
+          onclick="if(confirm('Deseja realmente apagar?'))
+            location.href='?class=Tabela&method=remover&id={id}'"
+        >
+          Remover
+        </button>
       </td>
     </tr>
     {/linha}
