@@ -11,7 +11,9 @@ class Tabela
     Transaction::get();
     $computador = new Crud("computador");
     $resultado = $computador->select();
-    print_r($resultado);
+    $tabela = new Template("view/tabela.html");
+    $tabela->set("linha", $resultado);
+    $this->message = $tabela->saida();
   }
   public function getMessage()
   {
