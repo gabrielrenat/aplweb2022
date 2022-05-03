@@ -26,6 +26,19 @@ class Form
       }
     }
   }
+  public function editar()
+  {
+    if (isset($_GET["id"])) {
+      try {
+        $conexao = Transaction::get();
+        $id = $conexao->quote($_GET["id"]);
+        $computador = new Crud("computador");
+        $resultado = $computador->select("*", "id = $id");
+      } catch (Exception $e) {
+        //throw $th;
+      }
+    }
+  }
   public function getMessage()
   {
     return $this->message;
