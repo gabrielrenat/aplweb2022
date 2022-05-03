@@ -24,7 +24,18 @@ class Form
         $marca = $conexao->quote($_POST["marca"]);
         $config = $conexao->quote($_POST["configuracao"]);
         $valor = $conexao->quote($_POST["valor"]);
-        $resultado = $computador->insert("marca, configuracao, valor", "$marca, $config, $valor");
+        if (empty($_POST["id"])) {
+          $computador->insert(
+            "marca, configuracao, valor",
+            "$marca, $config, $valor"
+          );
+        } else {
+          $id = $conexao->quote($_POST["id"]);
+          $computador->update(
+            "marca = $marca, configuracao = $config, valor = $valor",
+            "id = $id"
+          );
+        }
       } catch (Exception $e) {
         echo $e->getMessage();
       }
